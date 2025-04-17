@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Hapus atau comment favicon default React -->
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>GreenHaven</title>
+
+    <!-- Tambahkan script untuk generate favicon dari SVG -->
+    <script type="module">
+      import { createElement } from 'https://esm.sh/react@18.2.0';
+      import { renderToString } from 'https://esm.sh/react-dom@18.2.0/server';
+      import { FaLeaf } from 'https://esm.sh/react-icons/fa';
+
+      // Buat SVG favicon
+      const svgString = renderToString(
+        createElement(FaLeaf, {
+          style: {
+            color: '#059669', // warna emerald-600
+            width: '100%',
+            height: '100%'
+          }
+        })
+      );
+
+      // Convert SVG string ke base64
+      const base64Svg = btoa(svgString);
+
+      // Buat dan set favicon
+      const favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      favicon.type = 'image/svg+xml';
+      favicon.href = `data:image/svg+xml;base64,${base64Svg}`;
+      document.head.appendChild(favicon);
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
